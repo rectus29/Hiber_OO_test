@@ -23,24 +23,20 @@
  ******************************************************************************/
 package com.edeal.frontline;
 
-import com.edeal.frontline.entities.*;
+import com.edeal.frontline.entities.Address;
+import com.edeal.frontline.entities.City;
+import com.edeal.frontline.entities.Country;
+import com.edeal.frontline.entities.Person;
+import com.edeal.frontline.enums.Civility;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.boot.spi.MetadataImplementor;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
-import org.hibernate.tool.hbm2ddl.Target;
-import org.hibernate.tool.schema.TargetType;
 import org.reflections.Reflections;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.EnumSet;
 import java.util.Set;
 
 public class main{
@@ -64,8 +60,26 @@ public class main{
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
+
 			tx = session.beginTransaction();
+			//insert data
+			Country country = new Country("France");
+			  session.save(country);
+
+			City c = new City("Toulouse", "31000", country);
+			 session.save(c);
+
+
+
+
+
+
+
 			Person p = new Person();
+			p.setCivility(Civility.MR);
+			p.setFirstName("Pierre");
+			p.setFamilyName("Dupont");
+			p.setAddress(new Address("Rue qui va bien", c, country));
 
 			session.save(p);
 

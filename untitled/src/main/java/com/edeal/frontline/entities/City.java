@@ -46,6 +46,12 @@ public class City extends GenericEntity{
 	public City() {
 	}
 
+	public City(String name, String zipCode, Country country) {
+		this.name = name;
+		this.zipCode = zipCode;
+		this.country = country;
+	}
+
 	public String getName() {
 		return name;
 	}

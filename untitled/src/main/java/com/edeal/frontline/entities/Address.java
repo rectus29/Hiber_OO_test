@@ -40,9 +40,15 @@ public class Address{
 	@ManyToOne()
 	private Country country ;
 	@Column
-	private AddressStatus addressStatus = AddressStatus.VALIDATE;
+	private AddressStatus addressStatus = AddressStatus.PENDING;
 
 	public Address() {
+	}
+
+	public Address(String address, City city, Country country) {
+		this.address = address;
+		this.city = city;
+		this.country = country;
 	}
 
 	public String getAddress() {

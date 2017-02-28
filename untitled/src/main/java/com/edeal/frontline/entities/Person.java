@@ -41,14 +41,14 @@ public class Person extends GenericEntity{
 	@Column
 	private String firstName;
 	@Column
-	private String familiyName;
+	private String familyName;
 	@ManyToOne(targetEntity = Company.class)
 	private Company company;
 	@Column
 	private Position mainPosition;
-	@OneToMany(mappedBy = "person")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
 	private List<Position> positionList = new ArrayList<>() ;
-	@OneToMany(mappedBy = "person")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
 	private List<ContactDetails> contactDetails = new ArrayList<>();
 	@Embedded
 	private Address address;
@@ -82,12 +82,12 @@ public class Person extends GenericEntity{
 		return this;
 	}
 
-	public String getFamiliyName() {
-		return familiyName;
+	public String getFamilyName() {
+		return familyName;
 	}
 
-	public Person setFamiliyName(String familiyName) {
-		this.familiyName = familiyName;
+	public Person setFamilyName(String familyName) {
+		this.familyName = familyName;
 		return this;
 	}
 

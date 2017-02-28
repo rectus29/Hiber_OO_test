@@ -26,15 +26,23 @@ package com.edeal.frontline.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "country")
+@Table(	name = "country",
+		uniqueConstraints=
+			@UniqueConstraint(columnNames = {"name"})
+)
 public class Country extends GenericEntity{
 
 	@Column
 	private String name;
 
 	public Country() {
+	}
+
+	public Country(String name) {
+		this.name = name;
 	}
 
 	public String getName() {

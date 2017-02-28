@@ -6,6 +6,7 @@ package com.edeal.frontline.entities; /**
  */
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.Size;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,8 +16,9 @@ import java.util.Date;
 public class GenericEntity implements  Serializable {
 
     @Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-    private Long id;
+	@GeneratedValue(generator="EdealIdGenerator",strategy = GenerationType.AUTO)
+	@GenericGenerator(name="EdealIdGenerator", strategy="com.edeal.frontline.generator.EdealIdGenerator")
+    private String id;
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created = new Date();
@@ -27,11 +29,11 @@ public class GenericEntity implements  Serializable {
 	public GenericEntity() {
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
