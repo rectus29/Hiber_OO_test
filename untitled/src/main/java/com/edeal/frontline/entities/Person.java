@@ -41,13 +41,13 @@ public class Person extends GenericEntity{
 	private String firstName;
 	@Column
 	private String familiyName;
-	@ManyToOne
+	@ManyToOne(targetEntity = Company.class)
 	private Company company;
 	@Column
 	private Position mainPosition;
-	@OneToMany
+	@OneToMany(mappedBy = "person")
 	private List<Position> positionList = new ArrayList<>() ;
-	@OneToMany
+	@OneToMany(mappedBy = "person")
 	private List<ContactDetails> contactDetails = new ArrayList<>();
 	@Embedded
 	private Address address;

@@ -25,6 +25,7 @@ package com.edeal.frontline.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -34,5 +35,7 @@ public class ContactDetails extends GenericEntity{
 	private String value;
 	@Column
 	private ContactType type = ContactType.PHONE;
+	@ManyToOne(targetEntity = Person.class)
+	private Person person;
 
 }

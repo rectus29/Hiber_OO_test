@@ -25,6 +25,7 @@ package com.edeal.frontline.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,4 +34,7 @@ public class Position extends GenericEntity{
 
 	@Column
 	private boolean isMainPosition= true;
+
+	@ManyToOne(targetEntity = Person.class)
+	private Person person;
 }
