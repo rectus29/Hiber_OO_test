@@ -52,4 +52,96 @@ public class Company extends GenericEntity{
 	@OneToMany(mappedBy = "company")
 	private List<Person> employees = new ArrayList<>();
 
+	public Company() {
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Company setName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	public String getAcronym() {
+		return acronym;
+	}
+
+	public Company setAcronym(String acronym) {
+		this.acronym = acronym;
+		return this;
+	}
+
+	public List<ContactDetails> getContactDetailsList() {
+		return contactDetailsList;
+	}
+
+	public Company setContactDetailsList(List<ContactDetails> contactDetailsList) {
+		this.contactDetailsList = contactDetailsList;
+		return this;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public Company setAddress(Address address) {
+		this.address = address;
+		return this;
+	}
+
+	public Actor getCreator() {
+		return creator;
+	}
+
+	public Company setCreator(Actor creator) {
+		this.creator = creator;
+		return this;
+	}
+
+	public Actor getCouncelor() {
+		return councelor;
+	}
+
+	public Company setCouncelor(Actor councelor) {
+		this.councelor = councelor;
+		return this;
+	}
+
+	public String getSiret() {
+		return siret;
+	}
+
+	public Company setSiret(String siret) {
+		this.siret = siret;
+		return this;
+	}
+
+	public String getSiren() {
+		return siren;
+	}
+
+	public Company setSiren(String siren) {
+		this.siren = siren;
+		return this;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public Company setComment(String comment) {
+		this.comment = comment;
+		return this;
+	}
+
+	public List<Person> getEmployees() {
+		return employees;
+	}
+
+	public Company setEmployees(List<Person> employees) {
+		this.employees = employees;
+		return this;
+	}
 }

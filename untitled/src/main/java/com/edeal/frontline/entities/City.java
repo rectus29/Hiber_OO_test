@@ -43,4 +43,51 @@ public class City extends GenericEntity{
 	@ManyToOne
 	private Country country;
 
+	public City() {
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public City setName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public City setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+		return this;
+	}
+
+	public long getLng() {
+		return lng;
+	}
+
+	public City setLng(long lng) {
+		this.lng = lng;
+		return this;
+	}
+
+	public long getLat() {
+		return lat;
+	}
+
+	public City setLat(long lat) {
+		this.lat = lat;
+		return this;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public City setCountry(Country country) {
+		this.country = country;
+		return this;
+	}
 }

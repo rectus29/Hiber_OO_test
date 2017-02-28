@@ -23,6 +23,7 @@
  ******************************************************************************/
 package com.edeal.frontline.entities;
 
+import com.edeal.frontline.enums.Civility;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -59,5 +60,97 @@ public class Person extends GenericEntity{
 	public Person() {
 	}
 
+	public static Log getLogger() {
+		return logger;
+	}
 
+	public Civility getCivility() {
+		return civility;
+	}
+
+	public Person setCivility(Civility civility) {
+		this.civility = civility;
+		return this;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public Person setFirstName(String firstName) {
+		this.firstName = firstName;
+		return this;
+	}
+
+	public String getFamiliyName() {
+		return familiyName;
+	}
+
+	public Person setFamiliyName(String familiyName) {
+		this.familiyName = familiyName;
+		return this;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public Person setCompany(Company company) {
+		this.company = company;
+		return this;
+	}
+
+	public Position getMainPosition() {
+		return mainPosition;
+	}
+
+	public Person setMainPosition(Position mainPosition) {
+		this.mainPosition = mainPosition;
+		return this;
+	}
+
+	public List<Position> getPositionList() {
+		return positionList;
+	}
+
+	public Person setPositionList(List<Position> positionList) {
+		this.positionList = positionList;
+		return this;
+	}
+
+	public List<ContactDetails> getContactDetails() {
+		return contactDetails;
+	}
+
+	public Person setContactDetails(List<ContactDetails> contactDetails) {
+		this.contactDetails = contactDetails;
+		return this;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public Person setAddress(Address address) {
+		this.address = address;
+		return this;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public Person setComment(String comment) {
+		this.comment = comment;
+		return this;
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public Person setLocale(Locale locale) {
+		this.locale = locale;
+		return this;
+	}
 }

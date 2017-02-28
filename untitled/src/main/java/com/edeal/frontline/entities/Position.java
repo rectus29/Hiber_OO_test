@@ -37,4 +37,25 @@ public class Position extends GenericEntity{
 
 	@ManyToOne(targetEntity = Person.class)
 	private Person person;
+
+	public Position() {
+	}
+
+	public boolean isMainPosition() {
+		return isMainPosition;
+	}
+
+	public Position setMainPosition(boolean mainPosition) {
+		isMainPosition = mainPosition;
+		return this;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public Position setPerson(Person person) {
+		this.person = person;
+		return this;
+	}
 }

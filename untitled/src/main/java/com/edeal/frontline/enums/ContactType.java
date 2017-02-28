@@ -21,10 +21,9 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities;
+package com.edeal.frontline.enums;
 
-public enum Civility{
-
-	MR, MME, MS
+public enum ContactType{
+	PHONE, MAIL, FAX, MOBILE, WORK, WEBSITE
 
 }

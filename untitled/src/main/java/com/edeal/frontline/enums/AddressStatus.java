@@ -21,9 +21,9 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities;
+package com.edeal.frontline.enums;
 
-public enum ContactType{
-	PHONE, MAIL, FAX, MOBILE, WORK, WEBSITE
+public enum AddressStatus{
+	OK, NOK, PENDING, VALIDATE
 
 }

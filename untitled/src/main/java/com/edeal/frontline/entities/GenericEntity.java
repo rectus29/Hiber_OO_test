@@ -24,6 +24,8 @@ public class GenericEntity implements  Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updated = new Date();
 
+	public GenericEntity() {
+	}
 
 	public void setId(Long id) {
 		this.id = id;

@@ -34,5 +34,15 @@ public class Actor extends GenericEntity{
 	@Column
 	private String name;
 
+	public Actor() {
+	}
 
+	public String getName() {
+		return name;
+	}
+
+	public Actor setName(String name) {
+		this.name = name;
+		return this;
+	}
 }

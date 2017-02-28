@@ -21,9 +21,10 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities;
+package com.edeal.frontline.enums;
 
-public enum AddressStatus{
-	OK, NOK, PENDING, VALIDATE
+public enum Civility{
+
+	MR, MME, MS
 
 }

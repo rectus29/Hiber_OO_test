@@ -60,13 +60,13 @@ public class main{
 			cfg.addAnnotatedClass(annotedClass);
 
 		}
-//		cfg.setProperty("hibernate.order_updates", "true");
 		sessionFactory = cfg.configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
 			Person p = new Person();
+
 			session.save(p);
 
 			tx.commit();

@@ -23,6 +23,8 @@
  ******************************************************************************/
 package com.edeal.frontline.entities;
 
+import com.edeal.frontline.enums.ContactType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -38,4 +40,33 @@ public class ContactDetails extends GenericEntity{
 	@ManyToOne(targetEntity = Person.class)
 	private Person person;
 
+	public ContactDetails() {
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public ContactDetails setValue(String value) {
+		this.value = value;
+		return this;
+	}
+
+	public ContactType getType() {
+		return type;
+	}
+
+	public ContactDetails setType(ContactType type) {
+		this.type = type;
+		return this;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public ContactDetails setPerson(Person person) {
+		this.person = person;
+		return this;
+	}
 }

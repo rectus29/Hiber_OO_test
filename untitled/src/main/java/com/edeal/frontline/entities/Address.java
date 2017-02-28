@@ -23,6 +23,8 @@
  ******************************************************************************/
 package com.edeal.frontline.entities;
 
+import com.edeal.frontline.enums.AddressStatus;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
@@ -40,4 +42,51 @@ public class Address{
 	@Column
 	private AddressStatus addressStatus = AddressStatus.VALIDATE;
 
+	public Address() {
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public Address setAddress(String address) {
+		this.address = address;
+		return this;
+	}
+
+	public String getAddressComplement() {
+		return addressComplement;
+	}
+
+	public Address setAddressComplement(String addressComplement) {
+		this.addressComplement = addressComplement;
+		return this;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public Address setCity(City city) {
+		this.city = city;
+		return this;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public Address setCountry(Country country) {
+		this.country = country;
+		return this;
+	}
+
+	public AddressStatus getAddressStatus() {
+		return addressStatus;
+	}
+
+	public Address setAddressStatus(AddressStatus addressStatus) {
+		this.addressStatus = addressStatus;
+		return this;
+	}
 }
