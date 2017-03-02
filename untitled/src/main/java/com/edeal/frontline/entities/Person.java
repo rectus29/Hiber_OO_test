@@ -34,7 +34,7 @@ import java.util.Locale;
 
 @Entity
 @Table(name = "person")
-public class Person extends GenericEntity{
+public class Person extends CustomEntity{
 	private static final Log logger = LogFactory.getLog(Person.class);
 	@Column
 	private Civility civility;
@@ -50,8 +50,10 @@ public class Person extends GenericEntity{
 	private List<Position> positionList = new ArrayList<>() ;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
 	private List<ContactDetails> contactDetails = new ArrayList<>();
+
 	@Embedded
 	private Address address;
+
 	@Column
 	private String comment;
 	@Column

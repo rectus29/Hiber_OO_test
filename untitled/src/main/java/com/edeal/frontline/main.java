@@ -27,6 +27,7 @@ import com.edeal.frontline.entities.Address;
 import com.edeal.frontline.entities.City;
 import com.edeal.frontline.entities.Country;
 import com.edeal.frontline.entities.Person;
+import com.edeal.frontline.entities.sys.CustomField;
 import com.edeal.frontline.enums.Civility;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -80,7 +81,9 @@ public class main{
 			p.setFirstName("Pierre");
 			p.setFamilyName("Dupont");
 			p.setAddress(new Address("Rue qui va bien", c, country));
-
+			p.addCustomField(
+					new CustomField("phone", "02")
+			);
 			session.save(p);
 
 			tx.commit();

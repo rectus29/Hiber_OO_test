@@ -5,12 +5,15 @@ package com.edeal.frontline.entities; /**
  * Time: 07:47
  */
 
+import com.edeal.frontline.entities.sys.CustomField;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.Size;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @MappedSuperclass
 public class GenericEntity implements  Serializable {
@@ -25,6 +28,13 @@ public class GenericEntity implements  Serializable {
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updated = new Date();
+
+	@OneToMany(targetEntity = CustomField.class, cascade = CascadeType.ALL)
+	@JoinColumn( name = "genericEntityiId")
+	@MapKey(name="name")
+	private Map<String, CustomField> stringCustomFieldMap = new HashMap<>();
+
+
 
 	public GenericEntity() {
 	}
@@ -47,5 +57,19 @@ public class GenericEntity implements  Serializable {
 
 	public void setUpdated(Date updated) {
 		this.updated = updated;
+	}
+
+	public Map<String, CustomField> getStringCustomFieldMap() {
+		return stringCustomFieldMap;
+	}
+
+	public GenericEntity setStringCustomFieldMap(Map<String, CustomField> stringCustomFieldMap) {
+		this.stringCustomFieldMap = stringCustomFieldMap;
+		return this;
+	}
+
+	public GenericEntity addCustomField(CustomField customField) {
+		this.stringCustomFieldMap.put(customField.getName(), customField);
+		return this;
 	}
 }

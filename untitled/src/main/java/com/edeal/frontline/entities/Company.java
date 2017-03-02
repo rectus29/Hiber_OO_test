@@ -29,7 +29,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "company")
-public class Company extends GenericEntity{
+public class Company extends CustomEntity{
 
 	@Column
 	private String name;
