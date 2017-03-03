@@ -12,10 +12,11 @@ import java.util.Date;
  */
 public class EdealIdGenerator extends IncrementGenerator{
 
-	@Override public synchronized Serializable generate(SharedSessionContractImplementor session,
+	@Override
+	public synchronized Serializable generate(SharedSessionContractImplementor session,
 			Object object) throws HibernateException {
 
-		return "0000000000" + Long.toHexString(new Date().getTime());
+		return "000" + Long.toHexString(new Date().getTime() + (long)Math.random());
 	}
 
 }

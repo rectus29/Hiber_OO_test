@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "actor")
-public class Actor extends GenericEntity{
+public class Actor extends CustomEntity{
 
 	@Column
 	private String name;

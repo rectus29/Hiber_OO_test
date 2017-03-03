@@ -28,15 +28,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-@Entity
-@Table(	name = "country",
-		uniqueConstraints=
-			@UniqueConstraint(columnNames = {"name"})
-)
-public class Country extends GenericEntity{
+@Entity @Table(name = "country", uniqueConstraints = @UniqueConstraint(columnNames = {
+		"name" })) public class Country extends CustomEntity{
 
-	@Column
-	private String name;
+	@Column private String name;
 
 	public Country() {
 	}

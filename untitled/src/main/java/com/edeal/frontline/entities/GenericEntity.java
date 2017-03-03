@@ -29,12 +29,6 @@ public class GenericEntity implements  Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updated = new Date();
 
-	@OneToMany(targetEntity = CustomField.class, cascade = CascadeType.ALL)
-	@JoinColumn( name = "genericEntityiId")
-	@MapKey(name="name")
-	private Map<String, CustomField> stringCustomFieldMap = new HashMap<>();
-
-
 
 	public GenericEntity() {
 	}
@@ -59,17 +53,5 @@ public class GenericEntity implements  Serializable {
 		this.updated = updated;
 	}
 
-	public Map<String, CustomField> getStringCustomFieldMap() {
-		return stringCustomFieldMap;
-	}
 
-	public GenericEntity setStringCustomFieldMap(Map<String, CustomField> stringCustomFieldMap) {
-		this.stringCustomFieldMap = stringCustomFieldMap;
-		return this;
-	}
-
-	public GenericEntity addCustomField(CustomField customField) {
-		this.stringCustomFieldMap.put(customField.getName(), customField);
-		return this;
-	}
 }

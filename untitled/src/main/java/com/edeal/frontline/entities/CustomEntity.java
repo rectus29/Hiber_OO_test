@@ -14,10 +14,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@MappedSuperclass
-public class CustomEntity extends GenericEntity {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class CustomEntity extends GenericEntity {
 
-	@OneToMany(targetEntity = CustomField.class, cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity = CustomField.class, cascade = CascadeType.ALL)
 	@JoinColumn( name = "genericEntityiId")
 	@MapKey(name="name")
 	private Map<String, CustomField> stringCustomFieldMap = new HashMap<>();

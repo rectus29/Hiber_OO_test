@@ -30,16 +30,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "city")
-public class City extends GenericEntity{
+public class City extends CustomEntity{
 
 	@Column
 	private String name;
 	@Column
 	private String zipCode;
-	@Column
-	private long lng;
-	@Column
-	private long lat;
+	@Column(nullable = true)
+	private Long lng;
+	@Column(nullable = true)
+	private Long lat;
 	@ManyToOne
 	private Country country;
 

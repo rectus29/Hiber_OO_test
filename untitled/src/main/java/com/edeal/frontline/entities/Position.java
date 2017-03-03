@@ -30,7 +30,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "position")
-public class Position extends GenericEntity{
+public class Position extends CustomEntity{
 
 	@Column
 	private boolean isMainPosition= true;

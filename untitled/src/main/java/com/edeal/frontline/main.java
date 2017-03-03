@@ -29,23 +29,35 @@ import com.edeal.frontline.entities.Country;
 import com.edeal.frontline.entities.Person;
 import com.edeal.frontline.entities.sys.CustomField;
 import com.edeal.frontline.enums.Civility;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.reflections.Reflections;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 import java.util.Set;
 
 public class main{
-
+	private static final Logger log = LogManager.getLogger(main.class);
 	private static SessionFactory sessionFactory;
-	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-			.configure() // configures settings from hibernate.cfg.xml
-			.build();
+	private static EntityManager entityManager;
+
+	final StandardServiceRegistry registry =
+			new StandardServiceRegistryBuilder().configure() // configures settings from hibernate.cfg.xml
+					.build();
 
 	public static void main(String[] args) throws Exception {
 
@@ -58,40 +70,59 @@ public class main{
 
 		}
 		sessionFactory = cfg.configure().buildSessionFactory();
+		entityManager = sessionFactory.createEntityManager();
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 
-			tx = session.beginTransaction();
-			//insert data
-			Country country = new Country("France");
-			  session.save(country);
+		/*	tx = session.beginTransaction();
+			Country country = session.get(Country.class, "000000000015a93826e48");
+			City c = session.get(City.class, "000000000015a93826e34");
 
-			City c = new City("Toulouse", "31000", country);
-			 session.save(c);
+			for (int i = 0; i < 200; i++) {
+				log.debug(i);
+				Person p = new Person();
+				p.setCivility(Civility.MR);
+				p.setFirstName("Pierre" + i);
+				p.setFamilyName("Dupont" + i);
+				p.setAddress(new Address("Rue qui va bien" + i, c, country));
+				p.addCustomField(new CustomField("phone", "02"));
+				session.save(p);
+				session.flush();
+			}
+			tx.commit();*/
+
+			//requesting by hql query
+			Query query = entityManager.createQuery(
+					"select p from Person p where p.firstName like :name"
+			,  Person.class);
+			query.setParameter("name", "Pier%");
+			List<Person> resultQuery = query.getResultList();
 
 
 
+			//requesting by criteria
 
+			/*CriteriaBuilder criteriaBuilder =  entityManager.getCriteriaBuilder();
 
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Person.class);
+			criteria.add(Restrictions.eq("name","Pierre180"));
+			List<Person> result = criteria.list();
+			log.debug(result.size());
 
+			DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Person.class);
+			detachedCriteria.add(Restrictions.eq("name", "Pierre80"));
+			List<Person> detachResult = detachedCriteria.getExecutableCriteria(session).list();
+			log.debug(detachResult.size());*/
 
-			Person p = new Person();
-			p.setCivility(Civility.MR);
-			p.setFirstName("Pierre");
-			p.setFamilyName("Dupont");
-			p.setAddress(new Address("Rue qui va bien", c, country));
-			p.addCustomField(
-					new CustomField("phone", "02")
-			);
-			session.save(p);
-
-			tx.commit();
-		}
-		catch (Exception e) {
-			if (tx!=null) tx.rollback();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
 			e.printStackTrace();
-		}finally {
+		}
+		finally {
 			session.close();
 		}
 
