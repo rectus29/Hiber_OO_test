@@ -23,11 +23,8 @@
  ******************************************************************************/
 package com.edeal.frontline.entities.sys;
 
-import com.edeal.frontline.entities.GenericEntity;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity

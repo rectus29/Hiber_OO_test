@@ -23,7 +23,7 @@
  ******************************************************************************/
 package com.edeal.frontline.entities.model;
 
-import com.edeal.frontline.entities.GenericEntity;
+import com.edeal.frontline.entities.sys.GenericEntity;
 import com.edeal.frontline.enums.ContactType;
 
 import javax.persistence.Column;

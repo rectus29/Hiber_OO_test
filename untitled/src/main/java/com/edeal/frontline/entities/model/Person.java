@@ -23,7 +23,7 @@
  ******************************************************************************/
 package com.edeal.frontline.entities.model;
 
-import com.edeal.frontline.entities.CustomEntity;
+import com.edeal.frontline.entities.sys.CustomEntity;
 import com.edeal.frontline.enums.Civility;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,3 +1,11 @@
+package com.edeal.frontline;
+
+import com.edeal.frontline.entities.sys.TranslatedString;
+import com.sun.istack.internal.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /******************************************************************************
  * Copyright (c) 2000-2017 E-DEAL
  *
@@ -21,31 +29,29 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities.sys;
+public class LabelManager{
 
-import com.sun.istack.internal.NotNull;
+	private List<TranslatedString> translatedStringList = new ArrayList<>();
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+	private static LabelManager ourInstance = new LabelManager();
 
-@Table(name = "TranslatedString")
-@Entity
-public class TranslatedString extends GenericEntity{
-
-	@Column(nullable = false)
-	private String code;
-
-	@OneToMany(targetEntity = TranslationString.class)
-	private List<TranslationString> translationStringList = new ArrayList<>();
-
-
-
-	public String getTranslation(@NotNull String localeCode){
-		return null;
+	public static LabelManager getInstance() {
+		return ourInstance;
 	}
 
+	private LabelManager() {
+
+
+
+
+	}
+
+	private String getTranslatedString(@NotNull String localCode,@NotNull String translatedStringCode){
+		for(TranslatedString temp :this.translatedStringList){
+			if(1==2){
+				return temp.getTranslation(localCode);
+			}
+		}
+		return "[Error] no translatedString found for code " + translatedStringCode;
+	}
 }

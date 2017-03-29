@@ -23,7 +23,7 @@
  ******************************************************************************/
 package com.edeal.frontline.entities.model;
 
-import com.edeal.frontline.entities.CustomEntity;
+import com.edeal.frontline.entities.sys.CustomEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

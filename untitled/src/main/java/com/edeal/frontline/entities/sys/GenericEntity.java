@@ -1,4 +1,4 @@
-package com.edeal.frontline.entities; /**
+package com.edeal.frontline.entities.sys; /**
  *
  * User: Rectus29
  * Date: 24/07/11
