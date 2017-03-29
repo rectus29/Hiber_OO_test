@@ -21,52 +21,26 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities;
+package com.edeal.frontline.entities.sys;
 
-import com.edeal.frontline.enums.ContactType;
+import com.edeal.frontline.entities.GenericEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
+@Table(name = "TranslatedString")
 @Entity
-@Table(name = "contactdetails")
-public class ContactDetails extends GenericEntity{
-	@Column
-	private String value;
-	@Column
-	private ContactType type = ContactType.PHONE;
-	@ManyToOne(targetEntity = Person.class)
-	private Person person;
+public class TranslatedString extends GenericEntity{
 
-	public ContactDetails() {
-	}
+	@Column(nullable = false)
+	private String code;
 
-	public String getValue() {
-		return value;
-	}
+	@OneToMany(targetEntity = TranslationString.class)
+	private List<TranslationString> translationStringList = new ArrayList<>();
 
-	public ContactDetails setValue(String value) {
-		this.value = value;
-		return this;
-	}
 
-	public ContactType getType() {
-		return type;
-	}
-
-	public ContactDetails setType(ContactType type) {
-		this.type = type;
-		return this;
-	}
-
-	public Person getPerson() {
-		return person;
-	}
-
-	public ContactDetails setPerson(Person person) {
-		this.person = person;
-		return this;
-	}
 }

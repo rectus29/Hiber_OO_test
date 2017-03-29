@@ -21,7 +21,7 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities;
+package com.edeal.frontline.entities.model;
 
 import com.edeal.frontline.enums.AddressStatus;
 

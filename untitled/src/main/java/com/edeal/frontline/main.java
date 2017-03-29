@@ -23,30 +23,20 @@
  ******************************************************************************/
 package com.edeal.frontline;
 
-import com.edeal.frontline.entities.Address;
-import com.edeal.frontline.entities.City;
-import com.edeal.frontline.entities.Country;
-import com.edeal.frontline.entities.Person;
-import com.edeal.frontline.entities.sys.CustomField;
-import com.edeal.frontline.enums.Civility;
+import com.edeal.frontline.entities.model.Person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.reflections.Reflections;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Set;
 

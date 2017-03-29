@@ -21,28 +21,43 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities;
+package com.edeal.frontline.entities.model;
+
+import com.edeal.frontline.entities.CustomEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "actor")
-public class Actor extends CustomEntity{
+@Table(name = "position")
+public class Position extends CustomEntity{
 
 	@Column
-	private String name;
+	private boolean isMainPosition= true;
 
-	public Actor() {
+	@ManyToOne(targetEntity = Person.class)
+	private Person person;
+
+	public Position() {
 	}
 
-	public String getName() {
-		return name;
+	public boolean isMainPosition() {
+		return isMainPosition;
 	}
 
-	public Actor setName(String name) {
-		this.name = name;
+	public Position setMainPosition(boolean mainPosition) {
+		isMainPosition = mainPosition;
+		return this;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public Position setPerson(Person person) {
+		this.person = person;
 		return this;
 	}
 }

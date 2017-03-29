@@ -21,31 +21,53 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities;
+package com.edeal.frontline.entities.model;
+
+import com.edeal.frontline.entities.GenericEntity;
+import com.edeal.frontline.enums.ContactType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
-@Entity @Table(name = "country", uniqueConstraints = @UniqueConstraint(columnNames = {
-		"name" })) public class Country extends CustomEntity{
+@Entity
+@Table(name = "contactdetails")
+public class ContactDetails extends GenericEntity{
+	@Column
+	private String value;
+	@Column
+	private ContactType type = ContactType.PHONE;
+	@ManyToOne(targetEntity = Person.class)
+	private Person person;
 
-	@Column private String name;
-
-	public Country() {
+	public ContactDetails() {
 	}
 
-	public Country(String name) {
-		this.name = name;
+	public String getValue() {
+		return value;
 	}
 
-	public String getName() {
-		return name;
+	public ContactDetails setValue(String value) {
+		this.value = value;
+		return this;
 	}
 
-	public Country setName(String name) {
-		this.name = name;
+	public ContactType getType() {
+		return type;
+	}
+
+	public ContactDetails setType(ContactType type) {
+		this.type = type;
+		return this;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public ContactDetails setPerson(Person person) {
+		this.person = person;
 		return this;
 	}
 }

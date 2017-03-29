@@ -21,7 +21,9 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities;
+package com.edeal.frontline.entities.model;
+
+import com.edeal.frontline.entities.CustomEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

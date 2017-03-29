@@ -21,41 +21,33 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities;
+package com.edeal.frontline.entities.model;
+
+import com.edeal.frontline.entities.CustomEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-@Entity
-@Table(name = "position")
-public class Position extends CustomEntity{
+@Entity @Table(name = "country", uniqueConstraints = @UniqueConstraint(columnNames = {
+		"name" })) public class Country extends CustomEntity{
 
-	@Column
-	private boolean isMainPosition= true;
+	@Column private String name;
 
-	@ManyToOne(targetEntity = Person.class)
-	private Person person;
-
-	public Position() {
+	public Country() {
 	}
 
-	public boolean isMainPosition() {
-		return isMainPosition;
+	public Country(String name) {
+		this.name = name;
 	}
 
-	public Position setMainPosition(boolean mainPosition) {
-		isMainPosition = mainPosition;
-		return this;
+	public String getName() {
+		return name;
 	}
 
-	public Person getPerson() {
-		return person;
-	}
-
-	public Position setPerson(Person person) {
-		this.person = person;
+	public Country setName(String name) {
+		this.name = name;
 		return this;
 	}
 }
