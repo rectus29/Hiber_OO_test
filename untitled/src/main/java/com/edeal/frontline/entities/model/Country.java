@@ -24,30 +24,27 @@
 package com.edeal.frontline.entities.model;
 
 import com.edeal.frontline.entities.sys.CustomEntity;
+import com.edeal.frontline.entities.sys.TranslatedString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
-@Entity @Table(name = "country", uniqueConstraints = @UniqueConstraint(columnNames = {
-		"name" })) public class Country extends CustomEntity{
+@Entity @Table(name = "country", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
+public class Country extends CustomEntity {
 
-	@Column private String name;
+	@OneToOne(targetEntity = TranslatedString.class, mappedBy = "code")
+    private TranslatedString title;
 
-	public Country() {
+    public Country() {
+
 	}
 
-	public Country(String name) {
-		this.name = name;
-	}
+    public TranslatedString getTitle() {
+        return title;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setTitle(TranslatedString title) {
+        this.title = title;
+    }
 
-	public Country setName(String name) {
-		this.name = name;
-		return this;
-	}
+
 }
