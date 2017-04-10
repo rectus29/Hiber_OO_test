@@ -45,16 +45,14 @@ public class Person extends CustomEntity{
 	private String familyName;
 	@ManyToOne(targetEntity = Company.class)
 	private Company company;
-	@Column
+	@OneToOne
 	private Position mainPosition;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
 	private List<Position> positionList = new ArrayList<>() ;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
 	private List<ContactDetails> contactDetails = new ArrayList<>();
-
 	@Embedded
 	private Address address;
-
 	@Column
 	private String comment;
 	@Column

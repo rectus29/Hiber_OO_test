@@ -32,8 +32,8 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name = "TranslatedString")
 @Entity
+@Table(name = "translatedstring")
 public class TranslatedString extends GenericEntity{
 
 	@Column(nullable = false)
@@ -41,9 +41,7 @@ public class TranslatedString extends GenericEntity{
 
 	@OneToMany(targetEntity = TranslationString.class)
 	private List<TranslationString> translationStringList = new ArrayList<>();
-
-
-
+	
 	public String getTranslation(@NotNull String localeCode){
 		return null;
 	}

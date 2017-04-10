@@ -16,24 +16,24 @@ public abstract class CustomEntity extends GenericEntity {
 	@ManyToMany(targetEntity = CustomField.class, cascade = CascadeType.ALL)
 	@JoinColumn( name = "genericEntityiId")
 	@MapKey(name="name")
-	private Map<String, CustomField> stringCustomFieldMap = new HashMap<>();
+	private Map<String, CustomField> customFieldMap = new HashMap<>();
 
 
 
 	public CustomEntity() {
 	}
 
-	public Map<String, CustomField> getStringCustomFieldMap() {
-		return stringCustomFieldMap;
+	public Map<String, CustomField> getCustomFieldMap() {
+		return customFieldMap;
 	}
 
-	public CustomEntity setStringCustomFieldMap(Map<String, CustomField> stringCustomFieldMap) {
-		this.stringCustomFieldMap = stringCustomFieldMap;
+	public CustomEntity setCustomFieldMap(Map<String, CustomField> customFieldMap) {
+		this.customFieldMap = customFieldMap;
 		return this;
 	}
 
 	public CustomEntity addCustomField(CustomField customField) {
-		this.stringCustomFieldMap.put(customField.getName(), customField);
+		this.customFieldMap.put(customField.getName(), customField);
 		return this;
 	}
 }

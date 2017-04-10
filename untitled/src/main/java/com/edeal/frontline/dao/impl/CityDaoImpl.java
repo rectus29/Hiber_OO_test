@@ -21,20 +21,21 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities.sys;
+package com.edeal.frontline.dao.impl;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.edeal.frontline.dao.GenericDaoHibernate;
+import com.edeal.frontline.entities.model.City;
 
+import java.util.List;
 
-@Entity
-@Table(name = "translationstring")
-public class TranslationString extends GenericEntity{
+public class CityDaoImpl extends GenericDaoHibernate{
 
-	@Column(nullable = false)
-	private String localCode;
+	public CityDaoImpl(){
+		super(City.class);
+	}
 
-	@Column(nullable = false, columnDefinition = "LONGTEXT")
-	private String label;
+	@Override
+	public List<City> getAll() {
+		return super.getAll();
+	}
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.edeal.frontline.entities.sys">
+    <class name="GenericEntity" abstract="true">
+        <id name="id" type="String" column="id">
+            <generator class="com.edeal.frontline.generator.EdealIdGenerator"/>
+        </id>
+        <property name="created" type="timestamp"/>
+        <property name="updated" type="timestamp"/>
+    </class>
+</hibernate-mapping>

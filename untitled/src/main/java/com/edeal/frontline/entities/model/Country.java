@@ -28,10 +28,11 @@ import com.edeal.frontline.entities.sys.TranslatedString;
 
 import javax.persistence.*;
 
-@Entity @Table(name = "country", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
+@Entity
+@Table(name = "country")
 public class Country extends CustomEntity {
 
-	@OneToOne(targetEntity = TranslatedString.class, mappedBy = "code")
+	@OneToOne
     private TranslatedString title;
 
     public Country() {

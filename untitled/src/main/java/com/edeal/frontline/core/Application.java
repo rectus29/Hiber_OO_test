@@ -21,20 +21,8 @@
  * responsable des dommages pouvant résulter de l'utilisation de ce code
  * source.
  ******************************************************************************/
-package com.edeal.frontline.entities.sys;
+package com.edeal.frontline.core;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+public interface Application{
 
-
-@Entity
-@Table(name = "translationstring")
-public class TranslationString extends GenericEntity{
-
-	@Column(nullable = false)
-	private String localCode;
-
-	@Column(nullable = false, columnDefinition = "LONGTEXT")
-	private String label;
 }
