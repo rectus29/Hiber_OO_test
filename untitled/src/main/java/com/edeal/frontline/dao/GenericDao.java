@@ -3,6 +3,7 @@ package com.edeal.frontline.dao;/**
  * Date: 20 mai 2009
  */
 
+import com.edeal.frontline.entities.sys.GenericEntity;
 import com.edeal.frontline.enums.SortOrder;
 
 import java.io.Serializable;
@@ -33,7 +34,7 @@ import java.util.Set;
  * @param <PK> the primary key for that type
  * @author <a href="mailto:bwnoll@gmail.com">Bryan Noll</a>
  */
-public interface GenericDao<T, PK extends Serializable> {
+public interface GenericDao<T extends GenericEntity, PK extends Serializable> {
 
     /**
      * Generic method used to get all objects of a particular type. This

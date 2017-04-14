@@ -24,13 +24,13 @@
 package com.edeal.frontline.entities.sys;
 
 import com.sun.istack.internal.NotNull;
+import org.apache.commons.lang.StringUtils;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "translatedstring")
@@ -39,11 +39,26 @@ public class TranslatedString extends GenericEntity{
 	@Column(nullable = false)
 	private String code;
 
-	@OneToMany(targetEntity = TranslationString.class)
-	private List<TranslationString> translationStringList = new ArrayList<>();
-	
+	@OneToMany(targetEntity = TranslationString.class, cascade = CascadeType.ALL)
+	@JoinColumn( name = "translatedstring_id")
+	@MapKey(name="localCode")
+	private Map<String, TranslationString> translationStringList = new HashMap<>();
+
+	public TranslatedString() {
+	}
+
+	public TranslatedString(String code) {
+		this.code = code;
+	}
+
 	public String getTranslation(@NotNull String localeCode){
 		return null;
+	}
+
+	public void addTranslation(TranslationString translationString){
+		if(StringUtils.isNotEmpty(translationString.getLocalCode())){
+			this.translationStringList.put(translationString.getLocalCode(), translationString);
+		}
 	}
 
 }

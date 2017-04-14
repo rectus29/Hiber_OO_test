@@ -25,8 +25,11 @@ package com.edeal.frontline;
 
 import com.edeal.frontline.core.EdealApplication;
 import com.edeal.frontline.dao.impl.CityDaoImpl;
+import com.edeal.frontline.dao.impl.TranslatedStringDaoImpl;
 import com.edeal.frontline.entities.model.City;
 import com.edeal.frontline.entities.model.Person;
+import com.edeal.frontline.entities.sys.TranslatedString;
+import com.edeal.frontline.entities.sys.TranslationString;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -46,11 +49,24 @@ import java.util.Set;
 public class main{
 	private static final Logger log = LogManager.getLogger(main.class);
 
+
 	public static void main(String[] args) throws Exception {
-
-		EdealApplication edealApplication = new EdealApplication();
-
 		CityDaoImpl cityDao = new CityDaoImpl();
+		TranslatedStringDaoImpl translatedStringDao = new TranslatedStringDaoImpl();
+
+
+		TranslatedString translatedString = new TranslatedString("LF839");
+		translatedString.addTranslation(new TranslationString("fr", "France"));
+		translatedString.addTranslation(new TranslationString("de", "Frankreich"));
+
+		TranslatedString translatedString1 = translatedStringDao.merge(translatedString);
+		translatedString1.addTranslation(new TranslationString("tu", "yolo"));
+		 translatedStringDao.persist(translatedString1);
+		 //save dirty
+		TranslatedString translatedString15 = new TranslatedString("LF839");
+		translatedString15.setId(translatedString1.getId());
+		translatedStringDao.save(translatedString15);
+
 		List<City> cities = cityDao.getAll();
 		log.debug("plop");
 

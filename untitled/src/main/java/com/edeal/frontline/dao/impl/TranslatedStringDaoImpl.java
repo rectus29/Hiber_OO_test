@@ -24,18 +24,18 @@
 package com.edeal.frontline.dao.impl;
 
 import com.edeal.frontline.dao.GenericDaoHibernate;
-import com.edeal.frontline.entities.model.City;
+import com.edeal.frontline.entities.sys.TranslatedString;
 
 import java.util.List;
 
-public class CityDaoImpl extends GenericDaoHibernate<City, String>{
+public class TranslatedStringDaoImpl extends GenericDaoHibernate<TranslatedString, String>{
 
-	public CityDaoImpl(){
-		super(City.class);
+	public TranslatedStringDaoImpl() {
+		super(TranslatedString.class);
 	}
 
 	@Override
-	public List<City> getAll() {
+	public List<TranslatedString> getAll() {
 		return super.getAll();
 	}
 }

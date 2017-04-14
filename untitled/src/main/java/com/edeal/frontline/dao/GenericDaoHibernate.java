@@ -2,6 +2,7 @@ package com.edeal.frontline.dao;
 
 import com.edeal.frontline.core.Application;
 import com.edeal.frontline.core.EdealApplication;
+import com.edeal.frontline.entities.sys.GenericEntity;
 import com.edeal.frontline.enums.SortOrder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,7 +33,8 @@ import java.util.*;
  * @param <PK> the primary key for that type
  * @author <a href="mailto:bwnoll@gmail.com">Bryan Noll</a>
  */
-public abstract class GenericDaoHibernate<T, PK extends Serializable> implements GenericDao<T, PK> {
+public abstract class GenericDaoHibernate<T  extends GenericEntity, PK extends Serializable> implements GenericDao<T,
+		PK> {
 
     protected final Log log = LogFactory.getLog(getClass());
     private Class<T> persistentClass;
@@ -77,10 +79,15 @@ public abstract class GenericDaoHibernate<T, PK extends Serializable> implements
     }
 
     public T save(T object) {
-		return (T) this.getSession().merge(object);
+    	if(object.getId() != null)
+			return (T) this.getSession().merge(object);
+    	else{
+			 this.getSession().persist(object);
+			 return null;
+    	}
     }
 
-    public void delete(Object entity) {
+    public void delete(T entity) {
     	Session session = getSession();
 		//session.lock(entity, lockMode);
 		session.delete(entity);
@@ -298,7 +305,7 @@ public abstract class GenericDaoHibernate<T, PK extends Serializable> implements
 
 
     protected Session getSession() {
-        return EdealApplication.getInstance().getModelSession();
+        return EdealApplication.getInstance().getCurrentSession();
     }
 
 

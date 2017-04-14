@@ -25,6 +25,7 @@ package com.edeal.frontline.entities.sys;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -37,4 +38,30 @@ public class TranslationString extends GenericEntity{
 
 	@Column(nullable = false, columnDefinition = "LONGTEXT")
 	private String label;
+
+	public TranslationString() {
+	}
+
+	public TranslationString(String localCode, String label) {
+		this.localCode = localCode;
+		this.label = label;
+	}
+
+	public String getLocalCode() {
+		return localCode;
+	}
+
+	public TranslationString setLocalCode(String localCode) {
+		this.localCode = localCode;
+		return this;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public TranslationString setLabel(String label) {
+		this.label = label;
+		return this;
+	}
 }

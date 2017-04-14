@@ -2,8 +2,10 @@ package com.edeal.frontline.core;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.FlushMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -11,6 +13,7 @@ import org.reflections.Reflections;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.FlushModeType;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +45,7 @@ import java.util.Set;
 public class EdealApplication implements Application{
 	public static final String MODEL = "model";
 	public static final String SYS = "sys";
+	public static final String ALL = "all";
 	private static final Log logger = LogFactory.getLog(EdealApplication.class);
 	private Map<String, PersistanceUnit> persistanceUnitMap = new HashMap<>();
 
@@ -65,8 +69,9 @@ public class EdealApplication implements Application{
 
 	public EdealApplication() {
 		//TEST purpose only
-		this.persistanceUnitMap.put(MODEL, new PersistanceUnit(new ModelUnitConfiguration()));
-		this.persistanceUnitMap.put(SYS, new PersistanceUnit(new SysUnitConfiguration()));
+		this.persistanceUnitMap.put(ALL, new PersistanceUnit(new AllUnitConfiguration()));
+//		this.persistanceUnitMap.put(MODEL, new PersistanceUnit(new ModelUnitConfiguration()));
+//		this.persistanceUnitMap.put(SYS, new PersistanceUnit(new SysUnitConfiguration()));
 
 	}
 
@@ -77,7 +82,11 @@ public class EdealApplication implements Application{
 	}
 
 	public Session getModelSession(){
-		return this.getPersistanceUnitMap().get(MODEL).getSession();
+		return this.getPersistanceUnitMap().get(ALL).getSession();
+	}
+
+	public Session getCurrentSession(){
+		return this.getPersistanceUnitMap().get(ALL).getSession();
 	}
 
 
@@ -104,7 +113,7 @@ public class EdealApplication implements Application{
 	private class ModelUnitConfiguration extends PersistanceUnitConfiguration {
 		public ModelUnitConfiguration() {
 			this.entitesPackage = "com.edeal.frontline.entities.model";
-			this.hbConfigFile = "model.hbm.xml";
+			this.hbConfigFile = "model.cfg.xml";
 			this.mode = MODEL;
 		}
 	}
@@ -112,8 +121,16 @@ public class EdealApplication implements Application{
 	private class SysUnitConfiguration extends PersistanceUnitConfiguration {
 		public SysUnitConfiguration() {
 			this.entitesPackage = "com.edeal.frontline.entities.sys";
-			this.hbConfigFile = "sys.hbm.xml";
+			this.hbConfigFile = "sys.cfg.xml";
 			this.mode = SYS;
+		}
+	}
+
+	private class AllUnitConfiguration extends PersistanceUnitConfiguration {
+		public AllUnitConfiguration() {
+			this.entitesPackage = "com.edeal.frontline.entities";
+			this.hbConfigFile = "all.cfg.xml";
+			this.mode = ALL;
 		}
 	}
 
@@ -121,9 +138,12 @@ public class EdealApplication implements Application{
 		private final EntityManager entityManager;
 		private final SessionFactory sessionFactory;
 		private final Session session;
+		private final Transaction tx;
 
 		public PersistanceUnit(PersistanceUnitConfiguration configuration) {
-			Configuration cfg = new Configuration().configure(configuration.hbConfigFile);
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();
+			File f = new File(loader.getResource("persistance/" + configuration.hbConfigFile).getFile());
+			Configuration cfg = new Configuration().configure(f);
 			//load entities from classes
 			Reflections reflections = new Reflections(configuration.entitesPackage);
 			Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Entity.class);
@@ -132,7 +152,9 @@ public class EdealApplication implements Application{
 			}
 			this.sessionFactory = cfg.buildSessionFactory();
 			this.entityManager = sessionFactory.createEntityManager();
-			this.session  = sessionFactory.openSession();
+			this.session = sessionFactory.openSession();
+			this.tx = this.session.beginTransaction();
+			session.setFlushMode(FlushMode.COMMIT);
 		}
 
 		public EntityManager getEntityManager() {
@@ -148,6 +170,7 @@ public class EdealApplication implements Application{
 		}
 
 		public void unload(){
+			this.tx.commit();
 			this.session.close();
 			this.sessionFactory.close();
 			this.entityManager.close();
