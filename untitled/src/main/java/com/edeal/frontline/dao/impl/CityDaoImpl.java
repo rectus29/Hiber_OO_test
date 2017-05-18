@@ -25,6 +25,7 @@ package com.edeal.frontline.dao.impl;
 
 import com.edeal.frontline.dao.GenericDaoHibernate;
 import com.edeal.frontline.entities.model.City;
+import org.hibernate.Criteria;
 
 import java.util.List;
 

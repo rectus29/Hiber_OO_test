@@ -24,6 +24,7 @@
 package com.edeal.frontline.entities.model;
 
 import com.edeal.frontline.entities.sys.CustomEntity;
+import com.edeal.frontline.entities.sys.GenericEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "city")
-public class City extends CustomEntity{
+public class City extends GenericEntity{
 
 	@Column
 	private String name;

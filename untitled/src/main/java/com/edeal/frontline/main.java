@@ -27,22 +27,26 @@ import com.edeal.frontline.core.EdealApplication;
 import com.edeal.frontline.dao.impl.CityDaoImpl;
 import com.edeal.frontline.dao.impl.TranslatedStringDaoImpl;
 import com.edeal.frontline.entities.model.City;
+import com.edeal.frontline.entities.model.Country;
 import com.edeal.frontline.entities.model.Person;
 import com.edeal.frontline.entities.sys.TranslatedString;
 import com.edeal.frontline.entities.sys.TranslationString;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.reflections.Reflections;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Set;
 
@@ -52,14 +56,13 @@ public class main{
 
 	public static void main(String[] args) throws Exception {
 		CityDaoImpl cityDao = new CityDaoImpl();
-		TranslatedStringDaoImpl translatedStringDao = new TranslatedStringDaoImpl();
 
 
 		TranslatedString translatedString = new TranslatedString("LF839");
 		translatedString.addTranslation(new TranslationString("fr", "France"));
 		translatedString.addTranslation(new TranslationString("de", "Frankreich"));
 
-		TranslatedString translatedString1 = translatedStringDao.merge(translatedString);
+		/*TranslatedString translatedString1 = translatedStringDao.merge(translatedString);
 		translatedString1.addTranslation(new TranslationString("tu", "yolo"));
 		 translatedStringDao.persist(translatedString1);
 		 //save dirty
@@ -70,7 +73,7 @@ public class main{
 		List<City> cities = cityDao.getAll();
 		log.debug("plop");
 
-			/*//requesting by hql query
+			//requesting by hql query
 			Query query = EdealApplication.getInstance().getEntityManager().createQuery(
 					"select p from Person p where p.firstName like :name"
 			,  Person.class);
@@ -81,17 +84,21 @@ public class main{
 
 			//requesting by criteria
 
-			*//*CriteriaBuilder criteriaBuilder =  entityManager.getCriteriaBuilder();
+			CriteriaBuilder criteriaBuilder =  entityManager.getCriteriaBuilder();
 
-			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Person.class);
-			criteria.add(Restrictions.eq("name","Pierre180"));
-			List<Person> result = criteria.list();
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(City.class);
+			criteria.add(Restrictions.eq("country","papouazy"));
+			List<City> result = criteria.list();
+			for(City temp:result){
+				temp.setCountry(new Country(""))
+			}
+
 			log.debug(result.size());
 
 			DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Person.class);
 			detachedCriteria.add(Restrictions.eq("name", "Pierre80"));
 			List<Person> detachResult = detachedCriteria.getExecutableCriteria(session).list();
-			log.debug(detachResult.size());*//*
+			log.debug(detachResult.size());
 
 		} catch (Exception e) {
 			if (tx != null) {
