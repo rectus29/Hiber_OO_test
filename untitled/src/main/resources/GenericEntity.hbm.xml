@@ -4,9 +4,9 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.edeal.frontline.entities.sys">
-    <class name="GenericEntity" abstract="true">
+    <class name="com.rectusCorp.HiberTest.entities.sys.GenericEntity" abstract="true">
         <id name="id" type="String" column="id">
-            <generator class="com.edeal.frontline.generator.EdealIdGenerator"/>
+            <generator class="com.rectusCorp.HiberTest.generator.EdealIdGenerator"/>
         </id>
         <property name="created" type="timestamp"/>
         <property name="updated" type="timestamp"/>

@@ -4,10 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.edeal.frontline.entities.sys">
-    <union-subclass name="CustomEntity" extends="GenericEntity" abstract="true">
+    <union-subclass name="com.rectusCorp.HiberTest.entities.sys.CustomEntity" extends="com.rectusCorp.HiberTest.entities.sys.GenericEntity" abstract="true">
         <map name="customFieldMap" cascade="all" >
             <key column="name"/>
-            <many-to-many class="CustomField" column="genericEntityiId"/>
+            <many-to-many class="com.rectusCorp.HiberTest.entities.sys.CustomField" column="genericEntityiId"/>
         </map>
     </union-subclass>
 </hibernate-mapping>

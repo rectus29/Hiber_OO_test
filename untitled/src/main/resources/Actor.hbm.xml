@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.edeal.frontline.entities.model">
-    <union-subclass name="Actor" extends="com.edeal.frontline.entities.sys.CustomEntity" abstract="true">
+    <union-subclass name="com.rectusCorp.HiberTest.entities.model.Actor" extends="com.rectusCorp.HiberTest.entities.sys.CustomEntity" abstract="true">
         <property name="firstName" column="first_name" type="string"/>
     </union-subclass>
 </hibernate-mapping>
